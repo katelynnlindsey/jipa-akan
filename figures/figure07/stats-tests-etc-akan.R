@@ -8,7 +8,7 @@ ggplot(filtered_data, aes(x = H1H2c, fill = ATR)) +
   theme_minimal()
 
 
-file_path <- "/Users/chloeguttmann/Downloads/Akan-final-2values.ods"
+file_path <- "GitHub/jipa-akan/figures/figure07/Akan-final-2values.ods"
 data <- read_ods(file_path)
 
 
@@ -60,7 +60,7 @@ install.packages("GGally")
 library(GGally)
 
 # File path
-file_path <- "/Users/chloeguttmann/Downloads/Akan-Final-2values.ods"
+file_path <- "GitHub/jipa-akan/figures/figure07/Akan-final-2values.ods"
 
 # Read the ODS file
 data <- read_ods(file_path)
