@@ -2,7 +2,8 @@
 library(tidyverse)
 library(phonR)
 
-dfvowels <- read.csv(file.choose())
+
+dfvowels <- read.csv("~/GitHub/jipa-akan/figures/figure06/vowel_formants.csv")
 
 # Recode vowel
 # key: 1 =  /open O/, 2 = /epsilon/, 3 = /I/, and 4 = /horse shoe/ 
