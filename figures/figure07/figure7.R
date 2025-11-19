@@ -1,6 +1,11 @@
-install.packages("readODS")
-library(readODS)
+# Load package and dataframe
+library(tidyverse)
+library(phonR)
 library(ggplot2)
+library(viridis)
+library(extrafont)
+font_import(pattern = "CharisSIL", prompt = FALSE)
+loadfonts()
 
 # Define a white background theme
 white_theme <- theme(
@@ -9,29 +14,50 @@ white_theme <- theme(
   panel.grid.major = element_line(color = "grey90"),
   panel.grid.minor = element_line(color = "grey95"),
   legend.background = element_rect(fill = "white"),
-  axis.line = element_line(color = "black")
+  axis.line = element_line(color = "black"),
+  text=element_text(family="Charis SIL")
 )
 
-Akan.final.2values <- read.csv("~/GitHub/jipa-akan/figures/figure07/Akan-final-2values.csv")
+dfvowels <- read.csv("~/GitHub/jipa-akan/figures/figure07/vowel_formants.csv")
 
-data <- Akan.final.2values
+# Recode vowel
+# key: 1 =  /open O/, 2 = /epsilon/, 3 = /I/, and 4 = /horse shoe/ 
 
+dfvowels$vowel_id <- recode(dfvowels$vowel_id, "1" = "\u0254", "2" = "\u025B", 
+                            "3" = "\u026A", "4" = "\u028A", "a" = "a","e" = "e", 
+                            "i" = "i", "o"  = "o", "ae" = "\u00E6", "u" = "u")
 
-# Makes sure all 0s are numerical 
-data[] <- lapply(data, function(x) if (is.character(x)) trimws(x) else x)
+# Exclude Elizabeth's data -- a lot of clipping in her recording
+dfvowels <- dfvowels%>%
+  filter(speaker_id!="Elizabeth-010_mono")%>%
+  droplevels()
 
-# Convert to numeric if needed
-data$CPP <- as.numeric(data$CPP)
-data$H1H2c <- as.numeric(data$H1H2c)
+# Remove non-phonemic ash vowel
+dfvowels <- dfvowels%>%
+  filter(vowel_id!="\u00E6")%>%
+  droplevels()
 
-filtered_data <- data %>%
-  filter(CPP != 0, H1H2c != 0)
+df_male <- subset(dfvowels, sex == "male")
+df_female <- subset(dfvowels, sex == "female")
 
-# Boxplot of CPP values by ATR
-ggplot(filtered_data, aes(x = ATR, y = CPP, fill = ATR)) +
-  geom_boxplot() +
-  labs(title = "Relationship between CPP and ATR values",
-       x = "",
-       y = "CPP (dB)") +
+means <- dfvowels %>%
+  group_by(vowel_id) %>%
+  summarise(F1 = mean(F1),
+            F2 = mean(F2))
+
+v1 <- ggplot(dfvowels, aes(x = F2, y = F1, color = vowel_id, label = vowel_id)) + 
+  geom_point(alpha = 0.2) + 
+  stat_ellipse(level = 0.67) + 
+  geom_label(data = means) + 
+  scale_x_reverse() + 
+  scale_y_reverse() + 
   white_theme +
-  theme(legend.position = "none")
+  scale_fill_viridis()+
+  facet_wrap(~sex) + 
+  guides(color = FALSE)
+
+v1
+
+ggsave(v1,
+       file = "~/GitHub/jipa-akan/figures/figure07/figure7.png",
+       height = 4, width = 5, dpi = 300)

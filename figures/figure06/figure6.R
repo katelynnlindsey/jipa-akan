@@ -1,64 +1,95 @@
-# Load package and dataframe
-library(tidyverse)
-library(phonR)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(zoo)   # for rollmean
+library(scales)
+library(viridis)
+library(extrafont)
+font_import(pattern = "CharisSIL", prompt = FALSE)
+loadfonts()
+
+# Define a white background theme
+white_theme <- theme(
+  panel.background = element_rect(fill = "white"),
+  plot.background = element_rect(fill = "white"),
+  panel.grid.major = element_line(color = "grey90"),
+  panel.grid.minor = element_line(color = "grey95"),
+  legend.background = element_rect(fill = "white"),
+  axis.line = element_line(color = "black"),
+  text=element_text(family="Charis SIL")
+)
+
+# Distinguishable linetypes for B&W printing
+lt <- c(
+  "ɕᶣ" = "solid",      # ———
+  "f"   = "22",         # ——  ——  (long dash)
+  "h"   = "42",         # — · — ·  (dash + dot)
+  "s"   = "F2"          # —— · —— (long dash + dot)
+)
 
 
-dfvowels <- read.csv("~/GitHub/jipa-akan/figures/figure06/vowel_formants.csv")
+spectra <- read.csv("~/GitHub/jipa-akan/figures/figure06/sound_spectra.csv")
 
-# Recode vowel
-# key: 1 =  /open O/, 2 = /epsilon/, 3 = /I/, and 4 = /horse shoe/ 
+spectra[spectra == "??"] <- "ɕᶣ"
 
-dfvowels$vowel_id <- recode(dfvowels$vowel_id, "1" = "\u0254", "2" = "\u025B", 
-                            "3" = "\u026A", "4" = "\u028A", "a" = "a","e" = "e", 
-                            "i" = "i", "o"  = "o", "ae" = "\u00E6", "u" = "u")
+#Normalize intensity within groups
 
-# Exclude Elizabeth's data -- a lot of clipping in her recording
-dfvowels <- dfvowels%>%
-  filter(speaker_id!="Elizabeth-010_mono")%>%
-  droplevels()
+spectra_norm <- spectra %>%
+  group_by(Name) %>%
+  mutate(
+    Intensity_norm = Intensity - max(Intensity, na.rm = TRUE)
+  ) %>%
+  ungroup()
 
-# Remove non-phonemic ash vowel
-dfvowels <- dfvowels%>%
-  filter(vowel_id!="\u00E6")%>%
-  droplevels()
+#Smooth intensity within groups
 
-df_male <- subset(dfvowels, sex == "male")
-df_female <- subset(dfvowels, sex == "female")
+spectra_norm <- spectra_norm %>%
+  group_by(Name) %>%
+  arrange(Frequency) %>%
+  mutate(
+    Intensity_smooth = zoo::rollmean(Intensity_norm, k = 40, fill = "extend", na.pad = TRUE)
+  ) %>%
+  ungroup()
 
-par(mfrow = c(1, 2))
+# Pick a labeling point for each line (right edge of plot)
+label_points <- spectra_norm %>%
+  filter(Frequency <= 10000) %>%
+  group_by(Name) %>%
+  slice_max(Frequency, n = 1)
 
-# First plot
-with(df_male, plotVowels(F1, F2, vowel_id,
-                         plot.tokens = TRUE,
-                         pch.tokens = vowel_id,
-                         cex.tokens = 1.2,
-                         alpha.tokens = 0.2,
-                         plot.means = TRUE,
-                         pch.means = vowel_id,
-                         cex.means = 2,
-                         var.col.by = vowel_id,
-                         ellipse.line = TRUE,
-                         pretty = TRUE,
-                         xlim = c(3000, 400),
-                         ylim = c(1200, 100),
-                         xlab = "F2 (Hz)",
-                         ylab = "F1 (Hz)",
-                         main = "Male speakers"))
+px_spectra <-
+  ggplot(spectra_norm,
+         aes(x = Frequency, y = Intensity_smooth,
+             color = Name, linetype = Name)) +
+  geom_line(size = 0.9, alpha = 0.95) +
+  scale_fill_viridis()+
+  scale_linetype_manual(values = lt) +
+  
+  # Add symbols next to lines
+  geom_point(
+    data = label_points,
+    aes(x = Frequency, y = Intensity_smooth, shape = Name),
+    size = 3, fill = "white", stroke = 1.2
+  ) +
+  scale_shape_manual(values = c(
+    "ɕᶣ" = 21,
+    "f"   = 22,
+    "h"   = 23,
+    "s"   = 24
+  )) +
+  
+  coord_cartesian(xlim = c(0, 10000), ylim = c(-65, -5)) +
+  labs(
+    x = "Frequency (Hz)",
+    y = "Normalized amplitude (dB)",
+    shape = "Fricative",
+    color = "Fricative",
+    linetype = "Fricative"
+    ) +
+  white_theme
 
-# Second plot
-with(df_female, plotVowels(F1, F2, vowel_id,
-                           plot.tokens = TRUE,
-                           pch.tokens = vowel_id,
-                           cex.tokens = 1.2,
-                           alpha.tokens = 0.2,
-                           plot.means = TRUE,
-                           pch.means = vowel_id,
-                           cex.means = 2,
-                           var.col.by = vowel_id,
-                           ellipse.line = TRUE,
-                           pretty = TRUE,
-                           xlim = c(3000, 400),
-                           ylim = c(1200, 100),
-                           xlab = "F2 (Hz)",
-                           ylab = "F1 (Hz)",
-                           main = "Female speakers"))
+px_spectra
+
+ggsave(px_spectra,
+       file = "~/GitHub/jipa-akan/figures/figure06/figure6.png",
+       height = 4, width = 5, dpi = 300)

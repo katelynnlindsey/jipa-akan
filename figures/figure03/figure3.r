@@ -1,7 +1,11 @@
 library(readxl)
-VOT_data <- read_excel("~/GitHub/jipa-akan/figures/figure03/VOT_data.xlsx")
+VOT_data <- read_excel("GitHub/jipa-akan/figures/figure03/VOT_data.xlsx")
 
 library(tidyverse)
+library(viridis)
+library(extrafont)
+font_import(pattern = "CharisSIL", prompt = FALSE)
+loadfonts()
 
 # Define a white background theme
 white_theme <- theme(
@@ -10,8 +14,15 @@ white_theme <- theme(
   panel.grid.major = element_line(color = "grey90"),
   panel.grid.minor = element_line(color = "grey95"),
   legend.background = element_rect(fill = "white"),
-  axis.line = element_line(color = "black")
+  axis.line = element_line(color = "black"),
+  text=element_text(family="Charis SIL")
 )
+
+# Colorblind friendly palette
+cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999")
+
+VOT_data[VOT_data == "g"] <- "ɡ"
+
 
 VOT_data_filtered <- VOT_data %>%
   mutate(
@@ -19,7 +30,7 @@ VOT_data_filtered <- VOT_data %>%
   ) %>%
   filter(!phoneme %in% c("tw", "dw")) %>%
   mutate(
-    phoneme = factor(phoneme, levels = c("p", "t", "k", "b", "d", "g"))
+    phoneme = factor(phoneme, levels = c("p", "t", "k", "b", "d", "ɡ"))
   )
 
 # Build base plot (establish discrete x scale)
@@ -28,28 +39,28 @@ p <- ggplot(VOT_data_filtered, aes(x = phoneme, y = VOT, fill = phoneme)) +
   
   # shaded regions using numeric x indices (1 to 6 categories)
   annotate("rect", xmin = 0.5, xmax = 6.5, ymin = -139, ymax = -60,
-           fill = "#F8766D", alpha = 0.1) +
+           fill = "#CC79A7", alpha = 0.1) +
   annotate("rect", xmin = 0.5, xmax = 6.5, ymin = 1.4, ymax = 41,
-           fill = "#7CAE00", alpha = 0.1) +
+           fill = "#009E73", alpha = 0.1) +
   annotate("rect", xmin = 0.5, xmax = 6.5, ymin = 57, ymax = 97,
-           fill = "#00BFC4", alpha = 0.1) +
+           fill = "#0072B2", alpha = 0.1) +
   
   # labels for shaded regions
-  annotate("text", x = 3.5, y = -100, label = "long-lead", size = 4, color = "#F8766D") +
-  annotate("text", x = 3.5, y = 20, label = "short-lag", size = 4, color = "#7CAE00") +
-  annotate("text", x = 3.5, y = 77, label = "long-lag", size = 4, color = "#00BFC4") +
+  annotate("text", x = 3.5, y = -100, label = "long-lead", size = 4, color = "#CC79A7") +
+  annotate("text", x = 3.5, y = 20, label = "short-lag", size = 4, color = "#009E73") +
+  annotate("text", x = 3.5, y = 77, label = "long-lag", size = 4, color = "#0072B2") +
   
   # data layers
   geom_boxplot(outlier.shape = NA, alpha = 0.7) +
   geom_jitter(width = 0.15, size = 1, alpha = 0.5) +
   
   # colors and styling
-  theme_classic(base_size = 14) +
   labs(
     x = "Plosives",
     y = "VOT Duration (ms)",
     title = "Voice Onset Time for Plosives"
   ) +
+  scale_color_viridis()+
   white_theme +
   theme(
     legend.position = "none",
@@ -58,3 +69,7 @@ p <- ggplot(VOT_data_filtered, aes(x = phoneme, y = VOT, fill = phoneme)) +
 
 # Print the plot
 p
+
+ggsave(p,
+       file = "~/GitHub/jipa-akan/figures/figure03/figure3.png",
+       height = 4, width = 5, dpi = 300)

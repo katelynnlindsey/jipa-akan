@@ -1,5 +1,9 @@
 # Load package and dataframe
 library(tidyverse)
+library(viridis)
+library(extrafont)
+font_import(pattern = "CharisSIL", prompt = FALSE)
+loadfonts()
 
 # Define a white background theme
 white_theme <- theme(
@@ -8,65 +12,71 @@ white_theme <- theme(
   panel.grid.major = element_line(color = "grey90"),
   panel.grid.minor = element_line(color = "grey95"),
   legend.background = element_rect(fill = "white"),
-  axis.line = element_line(color = "black")
+  axis.line = element_line(color = "black"),
+  text=element_text(family="Charis SIL")
 )
 
-# Load dataframe
-voweldur <- read.csv("~/GitHub/jipa-akan/figures/figure09/vowel_duration_contrast.csv")
-
+dfvowels <- read.csv("~/GitHub/jipa-akan/figures/figure07/vowel_formants.csv")
+summary(dfvowels)
 
 # Recode vowel
-# key: 1 =  /open O/, 11 = /long open o/
-# 2 = /epsilon/, 22 = /long epsilon/
-# 3 = /I/, 33 = /long I/ 
-# 4 = /horse shoe/, 44 = /long horse shoe/ 
+# key: 1 =  /open O/, 2 = /epsilon/, 3 = /I/, and 4 = /horse shoe/ 
 
-voweldur$vowel_id <- recode(voweldur$vowel_id, "1" = "\u0254", "11" = "\u0254\u02D0", 
-                            "2" = "\u025B", "22" = "\u025B\u02D0",
-                            "3" = "\u026A", "33" = "\u026A\u02D0",
-                            "4" = "\u028A", "44" = "\u028A\u02D0",
-                            "a" = "a", "a:" = "a\u02D0", 
-                            "e" = "e", "e:" = "e\u02D0",
-                            "i" = "i", "i:" = "i\u02D0",
-                            "o" = "o", "o:" = "o\u02D0", 
-                            "u" = "u", "u:" = "u\u02D0")
-
-
-voweldur$vowel_id <- factor(voweldur$vowel_id,
-                            levels = c("i", "iː", "u", "uː", "ɪ", "ɪː",
-                                       "ʊ", "ʊː", "e", "eː", "o", "oː",
-                                       "ɛ", "ɛː", "ɔ", "ɔː", "a", "aː"))
-
-# check vowel_id levels to make sure the length diacritic appeared as expected
-levels(voweldur$vowel_id)
+dfvowels$vowel_id <- recode(dfvowels$vowel_id, "1" = "\u0254", "2" = "\u025B", 
+                            "3" = "\u026A", "4" = "\u028A", "a" = "a","e" = "e", 
+                            "i" = "i", "o"  = "o", "ae" = "\u00E6", "u" = "u")
 
 # covert duration from secs to milisecs
-voweldur$durationMS <- voweldur$duration*1000
+dfvowels$durationMS <- dfvowels$duration*1000
 
 # calculate mean per vowel quality
-voweldur%>%
+voweldur <- dfvowels%>%
   group_by(vowel_id)%>%
   summarise(mean_dur = mean(durationMS))
 
-# Plot length contrast
-ggplot(voweldur, aes(x=vowel_id, y=durationMS, fill=vowel_id))+
+# remove outliers
+remove_outliers <- function(df, column, group_var) {
+  col <- enquo(column)
+  grp <- enquo(group_var)
+  
+  df %>%
+    group_by(!!grp) %>%
+    mutate(
+      Q1 = quantile(!!col, 0.25, na.rm = TRUE),
+      Q3 = quantile(!!col, 0.75, na.rm = TRUE),
+      IQR = Q3 - Q1,
+      Lower = Q1 - 1.5 * IQR,
+      Upper = Q3 + 1.5 * IQR,
+      is_outlier = !!col < Lower | !!col > Upper
+    ) %>%
+    filter(!is_outlier) %>%
+    ungroup() %>%
+    select(-Q1, -Q3, -IQR, -Lower, -Upper, -is_outlier)
+}
+
+# Remove outliers per vowel
+dfvowels_clean <- remove_outliers(dfvowels, durationMS, vowel_id)
+
+# categorize high vowels
+dfvowels_clean <- dfvowels_clean %>%
+  mutate(
+    vowel_type = ifelse(vowel_id %in% c("i", "u", "\u026A","\u028A"), "high", "other")
+  )
+
+# Plot short vowel duration
+figure9 <- ggplot(dfvowels_clean, aes(x=vowel_id, y=durationMS, fill=vowel_type))+
   geom_boxplot(notch = F)+
   white_theme +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(family = "doulos", size = 18, hjust = 1),
-    axis.text.y = element_text(size = 18),           # default font
-    axis.title = element_text(size = 18) # default font
-  ) +
+  theme(legend.position = "none")+
   geom_jitter(color="black", size=0.4, alpha=0.9)+
-  xlab("")+
+  xlab("Vowel")+
   ylab("Duration (ms)")+
-  scale_x_discrete(limits=c("i", "i\u02D0",  
-                            "u","u\u02D0",
-                            "\u026A","\u026A\u02D0",
-                            "\u028A","\u028A\u02D0",
-                            "e","e\u02D0",
-                            "o","o\u02D0",
-                            "\u025B","\u025B\u02D0",
-                            "\u0254", "\u0254\u02D0",
-                            "a", "a\u02D0"))
+  scale_x_discrete(limits=c("i", "u", "\u026A","\u028A","e", "o", "\u025B", "\u0254", "\u00E6","a"))+
+  scale_fill_manual(values = c("high" = "tomato", "other" = "skyblue")) +
+  ylim(100,250)
+
+figure9
+
+ggsave(figure9,
+       file = "~/GitHub/jipa-akan/figures/figure09/figure9.png",
+       height = 4, width = 5, dpi = 300)

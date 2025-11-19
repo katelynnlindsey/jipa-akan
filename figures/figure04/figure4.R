@@ -4,16 +4,13 @@ library(ggplot2)   # For plotting
 library(dplyr)     # For data manipulation
 library(ggpubr)    # For combining plots
 library(gridExtra) # For arranging tables and plots
+library(viridis)
+library(extrafont)
+font_import(pattern = "CharisSIL", prompt = FALSE)
+loadfonts()
 
-# Read the .xls file
-# Replace 'path/to/your/file.xls' with the actual file path
-Akan_fricatives_KLL <- read_excel("G:/.shortcut-targets-by-id/1tlhzQiC7N74zS81hrTqKLNquHEwXCqZX/Research/Projects/JIPA Akan/figures/Akan_fricatives_KLL.xlsx", 
-                                  col_types = c("text", "text", "text", 
-                                                "text", "text", "text", "numeric", 
-                                                "numeric", "numeric", "numeric", 
-                                                "numeric", "numeric", "numeric"))
+data <- read_excel("GitHub/jipa-akan/figures/figure04/Akan_fricatives_KLL.xlsx")
 
-data <- Akan_fricatives_KLL
 
 # Clean and prepare the data
 # Ensure column names match your spreadsheet
@@ -62,7 +59,8 @@ white_theme <- theme(
   panel.grid.major = element_line(color = "grey90"),
   panel.grid.minor = element_line(color = "grey95"),
   legend.background = element_rect(fill = "white"),
-  axis.line = element_line(color = "black")
+  axis.line = element_line(color = "black"),
+  text=element_text(family="Charis SIL")
 )
 
 
@@ -75,8 +73,12 @@ p1 <- ggplot(affricate_data, aes(x = Fricative_phonetic, y = cog, fill = Fricati
   geom_boxplot() +
   labs(title = "CoG by Affricate Allophone",
        x = "Affricate Allophone", y = "CoG (Hz)") +
+  scale_color_viridis()+
   white_theme +
   theme(legend.position = "none")
 
 p1
 
+ggsave(p1,
+       file = "~/GitHub/jipa-akan/figures/figure04/figure4.png",
+       height = 4, width = 5, dpi = 300)
