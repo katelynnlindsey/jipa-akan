@@ -9,7 +9,7 @@ library(extrafont)
 font_import(pattern = "CharisSIL", prompt = FALSE)
 loadfonts()
 
-data <- read_excel("GitHub/jipa-akan/figures/figure04/Akan_fricatives_KLL.xlsx")
+data <- read_excel("GitHub/jipa-akan/figures/figure07/Akan_fricatives_KLL.xlsx")
 
 
 # Clean and prepare the data
@@ -23,6 +23,10 @@ data$Fricative_phonetic[is.na(data$Fricative_phonetic)] <- data$Fricative_phonem
 # Convert fricative columns to factors for plotting
 data$Fricative_phoneme <- as.factor(data$Fricative_phoneme)
 data$Fricative_phonetic <- as.factor(data$Fricative_phonetic)
+
+data$Fricative_phoneme <- gsub("ɕᶣ", "çʷ", data$Fricative_phoneme)
+data$Fricative_phonetic <- gsub("ɕᶣ", "çʷ", data$Fricative_phonetic)
+
 
 
 # Function to remove outliers using IQR method
@@ -82,7 +86,7 @@ create_cog_boxplot <- function(data, phoneme) {
 }
 
 # List of Fricative_phoneme values
-phonemes <- c("f", "s", "h", "ɕᶣ")
+phonemes <- c("f", "s", "h", "çʷ")
 
 # Create CoG boxplots for each Fricative_phoneme
 cog_plots <- lapply(phonemes, function(phoneme) {
@@ -97,5 +101,5 @@ combined_cog_figure
 
 # Save the combined figure
 ggsave(combined_cog_figure,
-       file = "~/GitHub/jipa-akan/figures/figure05/figure5.png",
+       file = "~/GitHub/jipa-akan/figures/figure07/figure7.png",
        height = 8, width = 10, dpi = 300)

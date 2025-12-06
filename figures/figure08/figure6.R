@@ -19,6 +19,8 @@ white_theme <- theme(
   text=element_text(family="Charis SIL")
 )
 
+
+
 # Distinguishable linetypes for B&W printing
 lt <- c(
   "ɕᶣ" = "solid",      # ———
@@ -30,7 +32,8 @@ lt <- c(
 
 spectra <- read.csv("~/GitHub/jipa-akan/figures/figure06/sound_spectra.csv")
 
-spectra[spectra == "??"] <- "ɕᶣ"
+spectra[spectra == "??"] <- "çʷ"
+
 
 #Normalize intensity within groups
 

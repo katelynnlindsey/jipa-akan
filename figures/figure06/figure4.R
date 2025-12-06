@@ -9,7 +9,7 @@ library(extrafont)
 font_import(pattern = "CharisSIL", prompt = FALSE)
 loadfonts()
 
-data <- read_excel("GitHub/jipa-akan/figures/figure04/Akan_fricatives_KLL.xlsx")
+data <- read_excel("GitHub/jipa-akan/figures/figure06/Akan_fricatives_KLL.xlsx")
 
 
 # Clean and prepare the data
@@ -23,6 +23,15 @@ data$Fricative_phonetic[is.na(data$Fricative_phonetic)] <- data$Fricative_phonem
 # Convert fricative columns to factors for plotting
 data$Fricative_phoneme <- as.factor(data$Fricative_phoneme)
 data$Fricative_phonetic <- as.factor(data$Fricative_phonetic)
+
+data$Fricative_phoneme <- gsub("t͡ɕᶣ", "c͡çʷ", data$Fricative_phoneme)
+data$Fricative_phoneme <- gsub("d͡ʑᶣ", "ɟ͡ʝʷ", data$Fricative_phoneme)
+data$Fricative_phonetic <- gsub("t͡ɕᶣ", "c͡çʷ", data$Fricative_phonetic)
+data$Fricative_phonetic <- gsub("d͡ʑᶣ", "ɟ͡ʝʷ", data$Fricative_phonetic)
+data$Fricative_phoneme <- gsub("ɕᶣ", "çʷ", data$Fricative_phoneme)
+data$Fricative_phonetic <- gsub("ɕᶣ", "çʷ", data$Fricative_phonetic)
+
+
 
 
 # Function to remove outliers using IQR method
@@ -66,7 +75,10 @@ white_theme <- theme(
 
 # Filter data to include only the specified allophones in Fricative_phonetic
 affricate_data <- data_clean %>% 
-  filter(Fricative_phonetic %in% c("t͡ɕ", "t͡ɕᶣ", "d͡ʑ", "d͡ʑᶣ"))
+  filter(Fricative_phonetic %in% c("t͡ɕ", "c͡çʷ", "d͡ʑ", "ɟ͡ʝʷ"))
+
+affricate_data$Fricative_phonetic <- factor(affricate_data$Fricative_phonetic,
+                      levels = c("t͡ɕ","d͡ʑ",  "c͡çʷ", "ɟ͡ʝʷ"))
 
 # Boxplot for Center of Gravity (CoG)
 p1 <- ggplot(affricate_data, aes(x = Fricative_phonetic, y = cog, fill = Fricative_phonetic)) +
@@ -80,5 +92,6 @@ p1 <- ggplot(affricate_data, aes(x = Fricative_phonetic, y = cog, fill = Fricati
 p1
 
 ggsave(p1,
-       file = "~/GitHub/jipa-akan/figures/figure04/figure4.png",
+       file = "~/GitHub/jipa-akan/figures/figure06/figure6.png",
        height = 4, width = 5, dpi = 300)
+
