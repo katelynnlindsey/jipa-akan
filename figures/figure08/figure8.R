@@ -30,7 +30,7 @@ lt <- c(
 )
 
 
-spectra <- read.csv("~/GitHub/jipa-akan/figures/figure06/sound_spectra.csv")
+spectra <- read.csv("~/GitHub/jipa-akan/figures/figure08/sound_spectra.csv")
 
 spectra[spectra == "??"] <- "çʷ"
 
@@ -94,5 +94,6 @@ px_spectra <-
 px_spectra
 
 ggsave(px_spectra,
-       file = "~/GitHub/jipa-akan/figures/figure06/figure6.png",
+       file = "~/GitHub/jipa-akan/figures/figure08/figure8.png",
        height = 4, width = 5, dpi = 300)
+
