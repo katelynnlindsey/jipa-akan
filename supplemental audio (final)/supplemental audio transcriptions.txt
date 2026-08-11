@@ -1,0 +1,230 @@
+Section	Final order	English gloss	Orthographic	Phonemic	Phonetic	Sound file name
+Consonants	1	to_sew	pam	pám	pʰã́m	001-to_sew.wav
+	2	to_embrace	bam	bám	bã́m	002-to_embrace.wav
+	3	ugly	tan	tán	tʰã́ɪ̃̀	003-ugly.wav
+	4	house	dan	dán	dã́ɪ̃̀	004-house.wav
+	5	bite		ká		005-bite.wav
+	6	dye		kʷá		006-dye.wav
+	7	sow	gu	ɡú		007-sow.wav
+	8	gamble	kyakya		t͡ɕát͡ɕá	008-gamble.wav
+	9	lion	gyata		d͡ʑàtá	009-lion.wav
+	10	cut	twa	tɕɥá		010-cut.wav
+	11	peel	dwa	dʑɥá	dʑ̥ɥá	011-peel.wav
+	12	take	fa	fá		012-take.wav
+	13	dance	sa	sá		013-dance.wav
+	14	to_beat	hwe	ɕɥɪ́		014-to_beat.wav
+	15	here	ha	há		015-here.wav
+	16	to_give	ma	má		016-to_give.wav
+	17	meat	nam	nám	nã́m	017-meat.wav
+	18	grow	nyini	ɲíní		018-grow.wav
+	19	hair	nwini	ɲɥíní		019-hair.wav
+	20	cough	wa	wá		020-cough.wav
+	21	grind	yam	jám		021-grind.wav
+	22	tax	lampoo	làmpʰóː	làmpóː	022-tax.wav
+	23	covenant	apam	àpám	àpʰã́m	023-covenant.wav
+	24	government	aban	àbán	àbã́ɪ̀	024-government.wav
+	25	pot_ladle	ɛta	ɛ̀tá	ɛ̀tʰá	025-pot_ladle.wav
+	26	a_day	ɛda	ɛ̀dá		026-a_day.wav
+	27	boiled_but_unpeeled_cocoyam	akaw	àkáw	àkʰáw	027-boiled_but_unpeeled_cocoyam.wav
+	28	welcome	akwaaba		àkʷáːbà	028-welcome.wav
+	29	players	agofoɔ	àɡʊ́fʊ̀ɔ́		029-players.wav
+	30	gamble	kyakya	t͡ɕát͡ɕá		030-gamble.wav
+	31	fire	egya	èd͡ʑá		031-fire.wav
+	32	bridge	etwe	ɛ̀t͡ɕɥɪ̃́ː		032-bridge.wav
+	33	grey_hair	edwe	ɛ̀d͡ʑɥɪ̃́ː		033-grey_hair.wav
+	34	year	afe	àfɪ́		034-year.wav
+	35	under	ase	àsɪ́		035-under.wav
+	36	mirror	ahwehwɛ	àɕɥɪ́ɕɥɛ́		036-mirror.wav
+	37	how_much	ahe	àhɪ̃́		037-how_much.wav
+	38	herring	amane	ámànɪ́	ámã̀nɪ̃́	038-herring.wav
+	39	name_of_a_person	anane	ánànɪ́	ánã̀nɪ̃́	039-name_of_a_person.wav
+	40	electricity	anyinam	àɲínàm	æ̀ɲĩ́nã̀m	040-electricity.wav
+	41	grumblings	anwiinwii	àɲɥíːɲɥíː	æ̀ɲɥĩ́ːɲɥíː	041-grumblings.wav
+	42	shyness	fɛreɛ	fɛ́rɪ̀ɛ́		042-shyness.wav
+	43	failure	ɛweɛ	ɛ́wɪ̀ɛ́		043-failure.wav
+	44	wife	ɛyere	ɛ̀jɪ̀rɪ́	ɛ̀jɪ̀ɹɪ́	044-wife.wav
+	45	fish	nam	nám	nã́m	045-fish.wav
+	46	read	kan	kán	kʰã́ɪ̃́	046-read.wav
+	47	stone			ɛbʷʊɔ	047-stone.wav
+	48	place			bʲɪaɛ	048-place.wav
+	49	open			bɥie	049-open.wav
+	50	to_sew	pam	pám	pʰã́m	050-to_sew.wav
+	51	ugly	tan	tán	tʰã́ɪ̃̀	051-ugly.wav
+	52	earthen_pot	kukuo	kúkúó	kʰúkú!ó	052-earthen_pot.wav
+	53	to_embrace	bam	bám	bã́m	053-to_embrace.wav
+	54	house	dan	dán	dã́ɪ̃̀	054-house.wav
+	55	sow	gu	ɡú		055-sow.wav
+	56	marriage		àwárɪ́ɛ́		056-marriage.wav
+	57	marriage		àwálɪ́ɛ́		057-marriage.wav
+	58	marriage		àwádɪ́ɛ́		058-marriage.wav
+	59	offering		àfɔ́rɪ́ɛ́		059-offering.wav
+	60	offering		àfɔ́lɪ́ɛ́		060-offering.wav
+	61	offering		àfɔ́dɪ́ɛ́		061-offering.wav
+	62	shirt		àtáːrɪ́ɛ́		062-shirt.wav
+	63	shirt		àtáːlɪ́ɛ́		063-shirt.wav
+	64	shirt		àtáːdɪ́ɛ́		064-shirt.wav
+	65	get_up		sɔ̀rɪ́		065-get_up.wav
+	66	get_up		sɔ̀lɪ́		066-get_up.wav
+	67	get_up		sɔ̀dɪ́		067-get_up.wav
+	68	eagle		ɔ̀kɔ́rɪ́ɛ́		068-eagle.wav
+	69	eagle		ɔ̀kɔ́lɪ́ɛ́		069-eagle.wav
+	70	eagle		ɔ̀kɔ́dɪ́ɛ́		070-eagle.wav
+	71	dislike	kyi	kì	t͡ɕì	071-dislike.wav
+	72	faith	gyidie	ɡídíé	d͡ʑídíé	072-faith.wav
+	73	repent			sat͡ɕɪra	073-repent.wav
+	74	repent			sakɪra	074-repent.wav
+	75	sugar			æsit͡ɕire	075-sugar.wav
+	76	sugar			æsikire	076-sugar.wav
+	77	tomorrow			ɔkɪna	077-tomorrow.wav
+	78	tomorrow			ɔt͡ɕɪna	078-tomorrow.wav
+	79	bite		ká		079-bite.wav
+	80	dye		k͡wá		080-dye.wav
+	81	has_gone		akɔ		081-has_gone.wav
+	82	has_come		aba		082-has_come.wav
+	83	welcome			ak͡waba	083-welcome.wav
+	84	gamble	kyakya		t͡ɕát͡ɕá	084-gamble.wav
+	85	lion	gyata		d͡ʑàtá	085-lion.wav
+	86	cut	twa	tɕɥá		086-cut.wav
+	87	peel	dwa	dʑɥá	dʑ̥ɥá	087-peel.wav
+	88	wear		hɛ́	ɕɛ́	088-wear.wav
+	89	read		kan	kã̀ɪ̃́	089-read.wav
+	90	cream		ńkù	ŋkʷù	090-cream.wav
+	91	oil		ńgʊ́	(ɛ́)ŋŋʊ́	091-oil.wav
+	92	don_t_marry		(ɛ̀)ǹwàrɪ́	ɛ̃̀ŋ̀wàrɪ́	092-don_t_marry.wav
+	93	snail		ńwá	(ɛ́)ŋwá	093-snail.wav
+	94	don_t_marry		ǹ-wárɪ́	(ɛ)ŋwárɪ́	094-don_t_marry.wav
+	95	don_t_chew		ń-wé	(ɛ́)ŋwé	095-don_t_chew.wav
+	96	true		àmpá		096-true.wav
+	97	twin		ǹtá		097-twin.wav
+	98	rabbit		ádànkʊ́	ádã̀ŋkʷʊ́	098-rabbit.wav
+	99	serious_problem		ásɛ̀m-kɛ̀sɪ́	ásɛ̃̀ŋkɛ̀sɪ́	099-serious_problem.wav
+	100	adults	ɛmpanin	ǹ-pànín	ɛ̀mpæ̀nín	100-adults.wav
+	101	days		ǹ-dá	ɛ̀ǹná	101-days.wav
+	102	works		ǹ-dʑúmá	èɲ̀ɲɥúmá	102-works.wav
+	103	Kofi_is_eating		kòfí + rɪ̀-dìdí	kòfíːdìdí	103-Kofi_is_eating.wav
+	104	he_s_drinking		ɔ́-rɪ̀-nʊ́m	ɔ́ːnʊ́m	104-he_s_drinking.wav
+	105	all_everything		ɲina + ara	ɲinaː	105-all_everything.wav
+	106	something		biribi	biːbi	106-something.wav
+	107	emphatic_I		mɪ + ara	mɪaː	107-emphatic_I.wav
+	108	everybody		obi + ara	obiaː	108-everybody.wav
+	109	sun	awia		æ̀ɥíá	109-sun.wav
+	110	finish	wie		ɥíé	110-finish.wav
+	111	watch	wɛn		ɥɛ̃́ɪ̃́	111-watch.wav
+Vowels	1	has_eaten	adi	àdí	æ̀dí	001-has_eaten.wav
+	2	thing	ade(ɛ)	àdɪ́(ɛ)		002-thing.wav
+	3	some	ebi	èbí		003-some.wav
+	4	proverb	ɛbɛ	ɛ̀bɛ́		004-proverb.wav
+	5	name_of_a_person	adu	adú	æ̀dú	005-name_of_a_person.wav
+	6	sea	ɛpo	ɛ̀pʊ́		006-sea.wav
+	7	someone	obi	òbí		007-someone.wav
+	8	knot	ɛpɔ	ɛ̀pɔ́		008-knot.wav
+	9	palm_fruit	abɛ	àbɛ́		009-palm_fruit.wav
+	10	sleep		da		010-sleep.wav
+	11	every_day		daː		011-every_day.wav
+	12	go		kɔ		012-go.wav
+	13	red		kɔː		013-red.wav
+	14	thick	pi	pì		014-thick.wav
+	15	many	pii	pìː		015-many.wav
+	16	vomit	fe	fɪ̀		016-vomit.wav
+	17	deep	fee	fɪ̀ː		017-deep.wav
+	18	vulture	opete	(ó)pèté		018-vulture.wav
+	19	open_space	petee	pètéː		019-open_space.wav
+	20	sweet	dɛ	dɛ̀		020-sweet.wav
+	21	silent	dɛɛ	dɛ̀ː		021-silent.wav
+	22	blow	hu	hú		022-blow.wav
+	23	show_of_glamor	huu	húː		023-show_of_glamor.wav
+	24	climb	fo	fʊ́		024-climb.wav
+	25	oven	foonoo	fʊ́ːnʊ́ː		025-oven.wav
+	26	sound_of_a_drop	ko	kó		026-sound_of_a_drop.wav
+	27	cocoa	kookoo	kóːkó		027-cocoa.wav
+	28	go	kɔ	kɔ́		028-go.wav
+	29	red	kɔɔ	kɔ́ː		029-red.wav
+	30	sleep	da	dà		030-sleep.wav
+	31	everyday	daa	dàː		031-everyday.wav
+	32	clean	fi	fí		032-clean.wav
+	33	dirt	fi	fĩ́		033-dirt.wav
+	34	sharpen	se	sɪ́		034-sharpen.wav
+	35	teeth	se	sɪ̃́		035-teeth.wav
+	36	blow	hu	hú		036-blow.wav
+	37	see	hu	hṹ		037-see.wav
+	38	throw	to	tʊ́		038-throw.wav
+	39	bake	to	tʊ̃́		039-bake.wav
+	40	take	fa	fá		040-take.wav
+	41	half	fa	fã́		041-half.wav
+	42	take	fa	fá		042-take.wav
+	43	half	fa	fá		043-half.wav
+	44	bell		dɔn	dɔ̃n	044-bell.wav
+	45	many_people		dɔm		045-many_people.wav
+	46	why		dɛn	dɛ̃n	046-why.wav
+	47	deform		dɛm		047-deform.wav
+	48	gun		etuo		048-gun.wav
+	49	buttocks		ɛtʊɔ		049-buttocks.wav
+	50	is_clean		æfi		050-is_clean.wav
+	51	year		afɪ		051-year.wav
+	52	death		owuo		052-death.wav
+	53	honey		ɛwʊɔ		053-honey.wav
+	54	you_dig		wʊ-tu	wutu	054-you_dig.wav
+	55	(s)he_washes		ɔ-si	osi	055-(s)he_washes.wav
+	56	has/have_seen		a-hũ	æ-hũ	056-has/have_seen.wav
+	57	rich_person		sika-ni	sikæni	057-rich_person.wav
+	58	you_buy		wʊ-tɔ	wʊ-tɔ	058-you_buy.wav
+	59	(s)he_sharpens		ɔ-sɪ	ɔ-sɪ	059-(s)he_sharpens.wav
+	60	has_have_smoked		a-hʊ	a-hʊ	060-has_have_smoked.wav
+	61	(s)he_likes_fufu		ɔpɛ fufuo	ope fufuo	061-(s)he_likes_fufu.wav
+	62	palm_fruit		abɛ		062-palm_fruit.wav
+	63	tree		dua		063-tree.wav
+	64	palm_tree		abedua		064-palm_tree.wav
+	65	money		sika		065-money.wav
+	66	pregnancy		ɲinsɛn		066-pregnancy.wav
+	67	mouse		ækura		067-mouse.wav
+	68	umbrella		kiniɛ	t͡ɕiniɛ	068-umbrella.wav
+	69	female_name		ofori-wa	oforiwa	069-female_name.wav
+	70	onion_sellers		geːne-fʊɔ	d͡ʑeːnefʊɔ	070-onion_sellers.wav
+	71	gossips		nsekuro-fʊɔ	nsekurofʊɔ	071-gossips.wav
+	72	cub		sisiri-ba	sisiriba	072-cub.wav
+	73	rich_person		sika-ni	sikæni	073-rich_person.wav
+	74	rich_person		sikani	sikeni	074-rich_person.wav
+	75	happiness		anid͡ʑe	enid͡ʑe	075-happiness.wav
+	76	happiness		anid͡ʑe	ænid͡ʑe	076-happiness.wav
+	77	has/have_cried		a-su	esu	077-has/have_cried.wav
+	78	has/have_cried		a-su	æsu	078-has/have_cried.wav
+	79	name_of_a_person	akoto	àkòtó	àkòtó	079-name_of_a_person.wav
+	80	grieving	abooboo	àbóːbóː	àbóːbóː	080-grieving.wav
+	81	pig			præko	081-pig.wav
+	82	parrot			æko	082-parrot.wav
+	83	(s)he_has_loosened_it			wæhod͡ʑɥo	083-(s)he_has_loosened_it.wav
+Tone and Prosody	1	hunter		ɔ̀bɔ̀fó 		001-hunter.wav
+	2	creator		ɔ̀bɔ́fó 		002-creator.wav
+	3	father	papa	pàpá		003-father.wav
+	4	fan	papa	pàpà		004-fan.wav
+	5	ask.HAB		bìsá 		005-ask.HAB.wav
+	6	ask.IMP		bìsà 		006-ask.IMP.wav
+	7	it_turns_it_over		ɛ̀dàń		007-it_turns_it_over.wav
+	8	it_relies_on		ɛ̀dàǹ		008-it_relies_on.wav
+	9	can	tumi	tùmí		009-can.wav
+	10	power	tumi	túmĩ́		010-power.wav
+	11	Kofi_stands_there		kòfí dʑìná hɔ́		011-Kofi_stands_there.wav
+	12	Kofi_is_standing_there		kòfí dʑìnà hɔ́		012-Kofi_is_standing_there.wav
+	13	Kofi_s_father			kòfí pàꜜpá	013-Kofi_s_father.wav
+	14	Kofi_s_house			kòfí ꜜdán nó	014-Kofi_s_house.wav
+	15	Kofi_s_water			kòfí ńꜜsúó	015-Kofi_s_water.wav
+	16	Is_it_with_Kofi	ɛ̀wɔ̀ Kòfí hɔ́?			016-Is_it_with_Kofi.wav
+	17	It_is_with_Kofi	"ɛ̀wɔ̀ 	Kòfí 	hɔ́."			017-It_is_with_Kofi.wav
+Syllable Structure	1	water		èn.sú.ó		001-water.wav
+	2	bed		ɛ̀m.pá		002-bed.wav
+	3	sweep		pɪ̀rá	prá	003-sweep.wav
+	4	smear		sɪ̀rá	sr̀á	004-smear.wav
+	5	get_hurt	pira	pìrá	phʲìrá	005-get_hurt.wav
+	6	turn_it_over	dàǹ	dànɪ̀	dàǹ	006-turn_it_over.wav
+	7	turn_it_over	dàǹ	dànɪ̀	dànɪ̀	007-turn_it_over.wav
+	8	read		kán	kʰãɪ̃	008-read.wav
+	9	to_sew	pam	pám	pʰã́m	009-to_sew.wav
+	10	turn_it_over			dàǹ	010-turn_it_over.wav
+	11	turn_it_over			dànɪ̀	011-turn_it_over.wav
+	12	read			kʰãɪ̃	012-read.wav
+	13	read			kʰán	013-read.wav
+	14	brighten			ɕɪ́rɛ̀n	014-brighten.wav
+	15	brighten			ɕɪ́rɛ̃̀	015-brighten.wav
+	16	to_sew		páḿ	páḿ	016-to_sew.wav
+	17	to_sew		páḿ	pámʊ́	017-to_sew.wav
+		Story				Story.wav
