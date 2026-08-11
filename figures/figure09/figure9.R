@@ -18,7 +18,7 @@ white_theme <- theme(
   text=element_text(family="Charis SIL")
 )
 
-dfvowels <- read.csv("~/GitHub/jipa-akan/figures/figure07/vowel_formants.csv")
+dfvowels <- read.csv("~/GitHub/jipa-akan/figures/figure09/vowel_formants.csv")
 
 # Recode vowel
 # key: 1 =  /open O/, 2 = /epsilon/, 3 = /I/, and 4 = /horse shoe/ 
@@ -52,12 +52,13 @@ v1 <- ggplot(dfvowels, aes(x = F2, y = F1, color = vowel_id, label = vowel_id)) 
   scale_x_reverse() + 
   scale_y_reverse() + 
   white_theme +
-  scale_fill_viridis()+
+  scale_fill_viridis() +
   facet_wrap(~sex) + 
-  guides(color = FALSE)
+  guides(color = FALSE) +
+  labs(x = "F2 (Hz)", y = "F1 (Hz)")
 
 v1
 
 ggsave(v1,
-       file = "~/GitHub/jipa-akan/figures/figure07/figure7.png",
+       file = "~/GitHub/jipa-akan/figures/figure09/figure9.png",
        height = 4, width = 5, dpi = 300)

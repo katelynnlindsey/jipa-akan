@@ -72,17 +72,17 @@ phonemes <- c("f", "s", "h", "ɕᶣ")
 
 # Function to create a CoG boxplot for a given Fricative_phoneme
 create_cog_boxplot <- function(data, phoneme) {
-  # Filter data for the specific Fricative_phoneme
   data_subset <- data %>% filter(Fricative_phoneme == phoneme)
   
-  # Boxplot for Center of Gravity (CoG)
   ggplot(data_subset, aes(x = Fricative_phonetic, y = cog, fill = Fricative_phonetic)) +
     geom_boxplot() +
     labs(title = paste("Center of Gravity of /",phoneme,"/"),
          x = "Fricative Allophones", y = "Center of Gravity (Hz)") +
     white_theme +
     scale_color_viridis()+
-    theme(legend.position = "none")
+    theme(legend.position = "none",
+          axis.title = element_text(size = 14),
+          axis.text = element_text(size = 12))
 }
 
 # List of Fricative_phoneme values
